@@ -5,7 +5,7 @@ db = SQLAlchemy()
 
 
 class Product(db.Model):
-    product_id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)
     Invoice_number = db.Column(db.String(500), nullable=False)  # Ask about unique=True or not
     Invoice_date = db.Column(db.String(20), nullable=False)
     Product_name = db.Column(db.String(1500), unique=True, nullable=False)

@@ -1,11 +1,12 @@
 from flask import Flask, jsonify
-
+from flask_cors import CORS
 from addToCartService import addToCartService
 from database import db
 from productService import productService
 from userService import userService
 
 app = Flask(__name__)
+CORS(app=app, origins=['*'])
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///productDB.db'
 
 

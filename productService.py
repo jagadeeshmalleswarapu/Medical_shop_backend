@@ -58,7 +58,7 @@ def get_all():
 
     for i in products:
         temp = {
-            "product_id": i.product_id,
+            "id": i.id,
             "Invoice_number": i.Invoice_number,
             "Invoice_date": i.Invoice_date,
             "Product_name": i.Product_name,
@@ -89,7 +89,7 @@ def get_product_with_name(pro_name):
 
     return jsonify(
         {
-            "product_id": product.product_id,
+            "id": product.id,
             "Invoice_number": product.Invoice_number,
             "Invoice_date": product.Invoice_date,
             "Product_name": product.Product_name,
