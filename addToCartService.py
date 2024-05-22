@@ -48,6 +48,9 @@ def adding_item_to_cart():
     product_name = request.get_json().get('Product_name', '')
     tablet_quantity = request.get_json().get('Tablet_quantity', '')
 
+    if len(product_name) < 1 or int(tablet_quantity) == 0 or tablet_quantity == '':
+        return jsonify({"error": "Please enter valid quantity"}), 400
+
     product = Product.query.filter_by(Product_name=product_name).first()
     if product is None:
         return jsonify({"error": "Product is not found"}), 404

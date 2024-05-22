@@ -16,17 +16,18 @@ def add_items_into_db():
     or_price = request.get_json().get('or_price', '')
     dc_price = request.get_json().get('dc_price', '')
     sheet_qty = request.get_json().get('sheet_qty', '')
-    tablet_qty = request.get_json().get('tablet_qty', '')
+    # tablet_qty = request.get_json().get('tablet_qty', '')
     sheet_tablet_qty = request.get_json().get('sheet_tablet_qty', '')
 
     # Validation
     if (len(inv_no) < 1 or len(inv_date) < 1 or len(product_name) < 1 or len(batch_no) < 1
             or len(exp_date) < 1 or len(or_price) < 1 or len(dc_price) < 1
-            or len(sheet_qty) < 1 or len(tablet_qty) < 1 or len(sheet_tablet_qty) < 1):
+            or len(sheet_qty) < 1 or len(sheet_tablet_qty) < 1):
         return jsonify({"error": "Some required fields are empty, please fill it"}), 400
 
     if Product.query.filter_by(Product_name=product_name).first():
         return jsonify({"error": "Product already exists, please add new one..."}), 409
+    tablet_qty = int(sheet_qty) * int(sheet_tablet_qty)
 
     # Adding products into Product table
     products_ref = Product(Invoice_number=inv_no, Invoice_date=inv_date, Product_name=product_name,
