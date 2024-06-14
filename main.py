@@ -25,5 +25,5 @@ app.register_blueprint(userService)
 db.app = app
 db.init_app(app)
 
-if __name__ == "__main__":
-    app.run(debug=True, port=1234)
+if __name__ == '__main__':
+    app.run(debug=True, port=os.getenv("PORT", default=5000))
